@@ -6,7 +6,7 @@ import numpy as np
 from pathlib import Path
 
 class DatasetLoader():
-    def __init__(self,root_dir:str,image_size:Tuple[int,int]=(244,244),transform = None):
+    def __init__(self,root_dir:str,image_size:Tuple[int,int]=(244,244),transform = None,target_image_class=None):
         """
         Args:
         """
@@ -14,6 +14,7 @@ class DatasetLoader():
         self.image_size = image_size
         self.image= []
         self.image_classes = []
+        self.target_image_class = target_image_class
         self.transform = transform
         self.load_image()
 
@@ -22,6 +23,8 @@ class DatasetLoader():
 
     def load_image(self):
         self.image_classes = os.listdir(self.root_dir)
+        if self.target_image_class:
+            self.image_classes = [self.target_image_class]
         for label_idx, class_name in enumerate(self.image_classes):
             class_path= os.path.join(self.root_dir,class_name)
             for img_path in os.listdir(class_path):
@@ -36,10 +39,12 @@ class DatasetLoader():
         return image, label
         
 
-data_loader = DatasetLoader("../train")
+data_loader = DatasetLoader("../train",target_image_class="cloth")
+print(len(data_loader))
 
 for i,a in data_loader:
     print(i,a)
+    break
     
 
 
