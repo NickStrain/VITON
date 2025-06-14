@@ -92,5 +92,5 @@ class Viton(nn.Module):
 
 # print(pipe.unet)
 
-obj = Viton()
-print(obj)
+# obj = Viton()
+# print(obj)
