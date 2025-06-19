@@ -2,3 +2,7 @@ numpy
 pandas 
 Pillow
 transformers
+diffusers
+accelerate 
+wandb
+lpips
